@@ -12,8 +12,6 @@ class Application(tk.Frame):
 
     def create_widgets(self):
         self.board.generateFields()
-        self.board.fields[0][0].status = 1
-        self.board.fields[1][0].status = 1
         self.board.draw()
         self.board.pack()
 

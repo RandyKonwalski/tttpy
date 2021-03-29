@@ -50,12 +50,12 @@ class Board(tk.Canvas):
         self.update()
       
     def checkWinRow(self, row, side):
-        if self.fields[row][0] == side and self.fields[row][1] == side and self.fields[row][2] == side:
+        if self.fields[row][0].status == side and self.fields[row][1].status == side and self.fields[row][2].status == side:
             return True
         return False
 
     def checkWinColumn(self, column, side):
-        if self.fields[0][column] == side and self.fields[1][column] == side and self.fields[2][column] == side:
+        if self.fields[0][column].status == side and self.fields[1][column].status == side and self.fields[2][column].status == side:
             return True
         return False
 
