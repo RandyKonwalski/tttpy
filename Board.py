@@ -15,13 +15,7 @@ class Board(tk.Canvas):
         kw.__delitem__('fieldsy')
         kw.__delitem__('side')
         super().__init__(master, cnf, **kw)
-
-    def getField(self, id):
-        row = id / self.fieldsx
-        fid = id - (self.fieldsx * row)
-        return self.fields[row][fid]
-
-
+    
     def generateFields(self):
         y = 0
         x = 0
