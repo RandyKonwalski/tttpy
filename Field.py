@@ -3,6 +3,15 @@ class Status:
     CROSS = 1
     NONE = 0
 
+    @staticmethod
+    def invert(status):
+        if status == Status.CIRCLE:
+            return Status.CROSS
+        elif status == Status.CROSS:
+            return Status.CIRCLE
+        raise Exception("Bad use of parameter: status")
+
+
 class Field:
     def __init__(self, x, y, sizex, sizey, canvas):
         self.x = x
@@ -14,21 +23,15 @@ class Field:
         self.padding = 10
 
     def onObjectClick(self, event):
-        if self.status < 2:
-            self.setStatus(self.status + 1)
-        else:
-            self.setStatus(Status.NONE)
-        
-        ciw = self.canvas.checkWin(Status.CIRCLE)
-        crw = self.canvas.checkWin(Status.CROSS)
-
-        if ciw:
-            print("circle won")
-        
-        if crw:
-            print("cross won")
-        
-        self.canvas.redraw()
+        if self.status == Status.NONE:
+            self.setStatus(self.canvas.side)
+            if self.canvas.checkWin(self.canvas.side):
+                if self.canvas.side == Status.CIRCLE:
+                    print("Circle won!")
+                elif self.canvas.side == Status.CROSS:
+                    print("Cross won!")
+            self.canvas.side = Status.invert(self.canvas.side)
+            self.canvas.redraw()
 
     def setStatus(self, status):
         self.status = status

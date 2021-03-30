@@ -7,11 +7,13 @@ class Board(tk.Canvas):
         self.sizey = kw.get('height')
         self.fieldsx = kw.get('fieldsx')
         self.fieldsy = kw.get('fieldsy')
+        self.side = kw.get('side')
         self.padding = 20
         self.objects = []
         self.fields = []
         kw.__delitem__('fieldsx')
         kw.__delitem__('fieldsy')
+        kw.__delitem__('side')
         super().__init__(master, cnf, **kw)
 
     def getField(self, id):
